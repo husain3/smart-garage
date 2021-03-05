@@ -1,0 +1,47 @@
+.Widget {
+  background-color: #575757;
+  padding: 1rem;
+  min-height: 30vh;
+  border-radius: 4px;
+}
+
+/* autoprefixer: off */
+@supports(display:grid) {
+  .Widget {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto 1fr;
+      grid-template-areas: 
+          "header"
+          "content";
+  }
+
+  .App > * + * {
+      margin-top: 0;
+  }
+}
+
+.Widget .header {
+  grid-area: header;
+  line-height: 2;
+  /* display: flex; */
+  justify-content: space-between;
+}
+
+.Widget h2 {
+  font-size: 100%;
+  margin: 0;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.Widget .content {
+  padding-top: 1rem;
+}
+
+@media(max-width: 600px) {
+  .Widget .content {
+      padding-top: 1rem;
+  }
+}
