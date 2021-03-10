@@ -1,13 +1,13 @@
-// import logo from '../assets/logo.svg';
+import DoorOpenerWidget from '../components/DoorOpenerWidget'
+import DoorStatusWidget from '../components/DoorStatusWidget'
+
 import '../styles/App.css';
-import DoorOpenerContainer from '../components/DoorOpenerContainer'
 
 function App() {
   // Fetch new data
   return (
     <div className="App">
-      <DoorOpenerContainer/>
-
+      <DoorOpenerWidget/>
     </div>
   );
 }
