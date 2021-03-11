@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import openerLogo from '../assets/Garage-Opener-Logo.svg'
+
 
 import '../styles/DoorOpenerButton.css';
 
@@ -24,6 +26,8 @@ export default function DoorOpenerButton() {
       });
   }
   return (
-    <Button onClick={getData}><b>Open/Close Garage Door</b></Button>
-  );
+    // <Button onClick={getData}><img src={garageOpen} className="App-logo" alt="garageOpen" /></Button>
+    <Button onClick={getData}><img src={openerLogo} className="App-logo" alt="garageOpener" /></Button>
+
+    );
 }
