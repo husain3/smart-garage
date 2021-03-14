@@ -32,3 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - SG-29: Fix changelog to add "Added" to old versions
+
+## [0.5.0] - 2021-03-14
+
+### Added
+
+- SG-28: Add username and password authentication to open garage door
+- Deleted default create-react-app attributes

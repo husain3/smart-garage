@@ -1,5 +1,5 @@
 .Widget {
-  background-color: #575757;
+  background-color: #020202;
   padding: 1rem;
   min-height: 265px;
   border-radius: 4px;
@@ -29,7 +29,7 @@
 }
 
 .Widget h2 {
-  font-size: 100%;
+  font-size: 200%;
   margin: 0;
   line-height: 1;
   text-overflow: ellipsis;

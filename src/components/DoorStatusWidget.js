@@ -4,6 +4,8 @@ import Widget from '../components/Widget';
 import garageClosed from '../assets/Closed-Sign.svg';
 import garageOpen from '../assets/Open-Sign.svg';
 
+import Grid from '@material-ui/core/Grid';
+
 import addNotification from 'react-push-notification';
 
 
@@ -87,7 +89,15 @@ export default class DoorStatusWidget extends Component {
   render() {
     return (
       <Widget heading="Door Status">
-        {this.showWidget()}
+        <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        >
+          {this.showWidget()}
+        </Grid>
       </Widget>
     );
   }

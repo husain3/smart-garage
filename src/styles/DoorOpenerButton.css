@@ -1,6 +1,25 @@
-.MuiButtonBase-root {
-    background-color: #3d3d3d !important;
+#trigger {
+    color: #FFFFFF !important;
+    background-color: #082d42 !important;
     margin: 0 auto;
     width: 80%;
     height: 70%;
+}
+
+#cancelButton {
+    color: #FFFFFF !important;
+    background-color: #700808 !important;
+    width: 50%;
+    /* margin: 0 auto;
+    width: 80%;
+    height: 70%; */
+}
+
+#okButton {
+    color: #FFFFFF !important;
+    background-color: #082d42 !important;
+    width: 50%;
+    /* margin: 0 auto;
+    width: 80%;
+    height: 70%; */
 }
