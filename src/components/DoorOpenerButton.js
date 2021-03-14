@@ -54,8 +54,6 @@ export default function DoorOpenerButton() {
       });
   }
   return (
-    // <Button onClick={getData}><img src={garageOpen} className="App-logo" alt="garageOpen" /></Button>
-    // <Button onClick={getData}><img src={openerLogo} className="App-logo" alt="garageOpener" /></Button>
     <Grid
     container
     spacing={0}
