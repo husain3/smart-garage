@@ -31,23 +31,25 @@ export default function DoorOpenerButton() {
 
   function getData(event) {
     event.preventDefault();
-    console.log(username);
-    console.log(password);
     handleClose();
-    // Fetch data
+
     return axios({
       method: "post",
       url: "http://192.168.1.104:5000/openclose",
-      // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { "Authorization": "Basic "+ Buffer.from(`${username}:${password}`).toString('base64')},
     })
       .then(function (response) {
           // Update state with data
           // this.setState({ loading: false, data: response.data });
+          setUserName('');
+          setPassword('');
           console.log(response);
       })
       .catch(function (response){
           // At least tell the Widget component we have stopped loading
           console.log(response);
+          setUserName('');
+          setPassword('');
           // this.setState({ loading: false });
       });
   }
@@ -60,7 +62,6 @@ export default function DoorOpenerButton() {
     direction="column"
     alignItems="center"
     justify="center"
-    padd
     >
       <Button id="trigger" onClick={handleClickOpen}>
         <img src={openerLogo} className="App-logo" alt="garageOpener" />
@@ -80,20 +81,18 @@ export default function DoorOpenerButton() {
             <div>
               <TextField value={username}
                 onInput={ e=>setUserName(e.target.value)}
-                hintText="Username"
                 placeholder="Username"
                 type="input"
-                fullWidth="true">
+                fullWidth={true}>
               </TextField>
             </div>
             &nbsp;
             <div>
               <TextField value={password}
                 onInput={ e=>setPassword(e.target.value)}
-                hintText="Password"
                 placeholder="Password"
                 type="password"
-                fullWidth="true">
+                fullWidth={true}>
               </TextField>
             </div>
           </DialogContent>

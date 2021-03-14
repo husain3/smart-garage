@@ -95,7 +95,6 @@ export default class DoorStatusWidget extends Component {
         direction="column"
         alignItems="center"
         justify="center"
-        padd
         >
           {this.showWidget()}
         </Grid>
