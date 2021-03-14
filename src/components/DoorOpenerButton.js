@@ -3,11 +3,29 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import openerLogo from '../assets/Garage-Opener-Logo.svg'
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import Grid from '@material-ui/core/Grid';
 
 import '../styles/DoorOpenerButton.css';
 
 export default function DoorOpenerButton() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   function getData() {    
+    handleClose();
     // Fetch data
     return axios({
       method: "post",
@@ -27,7 +45,39 @@ export default function DoorOpenerButton() {
   }
   return (
     // <Button onClick={getData}><img src={garageOpen} className="App-logo" alt="garageOpen" /></Button>
-    <Button onClick={getData}><img src={openerLogo} className="App-logo" alt="garageOpener" /></Button>
-
-    );
+    // <Button onClick={getData}><img src={openerLogo} className="App-logo" alt="garageOpener" /></Button>
+    <Grid
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justify="center"
+    padd
+    >
+      <Button id="trigger" onClick={handleClickOpen}>
+        <img src={openerLogo} className="App-logo" alt="garageOpener" />
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Click 'OK' to confirm triggering garage door opener.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button id="cancelButton" onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+          <Button id="okButton" onClick={getData} color="primary" autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Grid>
+  );
 }

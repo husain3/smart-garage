@@ -31,16 +31,16 @@ class Widget extends Component {
           </h2>
         </div>
         {/* <div> */}
-          <Grid
+          {/* <Grid
             container
             spacing={0}
             direction="column"
             alignItems="center"
             justify="center"
             padd
-          >
+          > */}
               {this.props.children}
-          </Grid>
+          {/* </Grid> */}
         {/* </div> */}
       </div>
     );
