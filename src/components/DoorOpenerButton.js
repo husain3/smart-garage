@@ -8,6 +8,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import Divider from '@material-ui/core/Divider';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -15,6 +17,9 @@ import '../styles/DoorOpenerButton.css';
 
 export default function DoorOpenerButton() {
   const [open, setOpen] = React.useState(false);
+
+  const [username, setUserName] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +29,10 @@ export default function DoorOpenerButton() {
     setOpen(false);
   };
 
-  function getData() {    
+  function getData(event) {
+    event.preventDefault();
+    console.log(username);
+    console.log(password);
     handleClose();
     // Fetch data
     return axios({
@@ -63,20 +71,41 @@ export default function DoorOpenerButton() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Click 'OK' to confirm triggering garage door opener.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button id="cancelButton" onClick={handleClose} color="secondary">
-            Cancel
-          </Button>
-          <Button id="okButton" onClick={getData} color="primary" autoFocus>
-            OK
-          </Button>
-        </DialogActions>
+        <form onSubmit={getData} >
+          <DialogTitle id="alert-dialog-title">{"Authentication"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Please enter username and password
+            </DialogContentText>
+            <div>
+              <TextField value={username}
+                onInput={ e=>setUserName(e.target.value)}
+                hintText="Username"
+                placeholder="Username"
+                type="input"
+                fullWidth="true">
+              </TextField>
+            </div>
+            &nbsp;
+            <div>
+              <TextField value={password}
+                onInput={ e=>setPassword(e.target.value)}
+                hintText="Password"
+                placeholder="Password"
+                type="password"
+                fullWidth="true">
+              </TextField>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button id="cancelButton" onClick={handleClose} color="secondary">
+              Cancel
+            </Button>
+            <Button type="submit" id="okButton" onClick={getData} color="primary" autoFocus>
+              OK
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </Grid>
   );
