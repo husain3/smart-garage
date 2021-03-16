@@ -54,11 +54,22 @@ export default class DoorStatusWidget extends Component {
     });
   };
 
+  garageDoorStillOpen(minutes_opened){
+    addNotification({
+        title: 'ALERT: GARAGE DOOR STILL OPEN',
+        message: `Garage door has been open for ${minutes_opened} minutes`,
+        theme: 'darkblue',
+        native: true // when using native, your OS will handle theming.
+    });
+  };
+
   garageDoorTriggered(garageState) {
     if(garageState.door_status === "closed") {
       this.garageDoorClosed();
     } else if (garageState.door_status === "opened") {
       this.garageDoorOpened();
+    } else if (garageState.door_status === "still_open") {
+      this.garageDoorStillOpen(garageState.minutes_opened);
     }
     this.getData();
   }
