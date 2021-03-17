@@ -21,7 +21,7 @@ export default class DoorStatusWidget extends Component {
 
     this.getData = this.getData.bind(this);
     
-    this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
+    this.eventSource = new EventSource("https://192.168.1.104:5001/stream");
   }
 
   componentDidMount() {
@@ -75,7 +75,7 @@ export default class DoorStatusWidget extends Component {
   }
 
   getData() {
-    return axios.get(`http://192.168.1.104:5002/lastactivity`)
+    return axios.get(`https://192.168.1.104:5002/lastactivity`)
     .then(res => {
       console.log(res.data)
       this.setState({
@@ -93,7 +93,7 @@ export default class DoorStatusWidget extends Component {
     } else if (this.state.doorstatus === "closed") {
       return (<img src={garageClosed} className="App-logo1" alt="garageClosed" />);
     } else {
-      return (<a>dunno</a>);
+      return (<a>Not Available.</a>);
     }
   }
 
