@@ -88,12 +88,13 @@ export default class DoorStatusWidget extends Component {
   }
 
   showWidget() {
+    // console.log(garageOpen)
     if(this.state.doorstatus === "opened") {
       return (<img src={garageOpen} className="App-logo" alt="garageOpen" />);
     } else if (this.state.doorstatus === "closed") {
       return (<img src={garageClosed} className="App-logo1" alt="garageClosed" />);
     } else {
-      return (<a>Not Available.</a>);
+      return (<a>Retrieving data...</a>);
     }
   }
 
