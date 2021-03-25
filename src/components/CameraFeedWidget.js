@@ -8,8 +8,6 @@ import Grid from '@material-ui/core/Grid';
 
 import addNotification from 'react-push-notification';
 
-import jsonpickle from 'jsonpickle'
-
 import '../styles/CameraFeedWidget.css';
 
 
