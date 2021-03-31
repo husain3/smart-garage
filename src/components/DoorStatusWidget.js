@@ -75,7 +75,7 @@ export default class DoorStatusWidget extends Component {
   }
 
   getData() {
-    return axios.get(`https://192.168.1.104:5002/lastactivity`)
+    return axios.get(`https://192.168.1.104:5001/lastactivity`)
     .then(res => {
       console.log(res.data)
       this.setState({
