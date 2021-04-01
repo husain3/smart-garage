@@ -7,18 +7,19 @@ import garageOpen from '../assets/Open-Sign.svg';
 import Grid from '@material-ui/core/Grid';
 
 import addNotification from 'react-push-notification';
-import '../styles/DoorLogsWidget.css';
 
 
-export default class DoorLogsWidget extends Component {
+export default class GarageClimateWidget extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      doorlogs: ""
+      temp: undefined,
+      humidity: undefined
     }
 
     this.getData = this.getData.bind(this);
+    
   }
 
   componentDidMount() {
@@ -26,7 +27,7 @@ export default class DoorLogsWidget extends Component {
 
     this.interval = setInterval(
       () => this.getData(),
-      5000
+      300000
     );
   }
 
@@ -34,22 +35,28 @@ export default class DoorLogsWidget extends Component {
     clearInterval(this.interval);
   }
 
+  // componentDidUpdate(prevProps) {
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.userID !== prevProps.userID) {
+  //     this.fetchData(this.props.userID);
+  //   }
+  // }
+
   getData() {
-    console.log("Inside getData()")
-    return axios.get(`http://192.168.1.104:5001/history`)
+    return axios.get(`http://192.168.1.104:5001/climate`)
     .then(res => {
-      console.log(res)
+      console.log(res.data)
       this.setState({
-        doorlogs: res.data
+        temp: res.data["temperature"],
+        humidity: res.data["humidity"]
       });
       this.forceUpdate();
-    })
-    .catch(err => console.error(err))
+    });
   }
 
   showWidget() {
     // console.log(garageOpen)
-    if (this.state.doorlogs === "") {
+    if (this.state.temp === undefined || this.state.humidity === undefined) {
       return (
         <Grid
           container
@@ -71,9 +78,26 @@ export default class DoorLogsWidget extends Component {
             alignItems="center"
             justify="center"
           >
-            <pre>
-              {this.state.doorlogs}
-            </pre>
+            Indoor Temperature
+            <div>
+              <h1>
+                {this.state.temp}°C
+              </h1>
+            </div>
+          </Grid>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            Relative Humidity
+            <div>
+              <h1>
+                {this.state.humidity}%
+              </h1>
+            </div>
           </Grid>
         </div>
       );
@@ -82,8 +106,16 @@ export default class DoorLogsWidget extends Component {
 
   render() {
     return (
-      <Widget id="BEP" heading="Door Use History">
-        {this.showWidget()}
+      <Widget heading="Garage Climate">
+        <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        >
+          {this.showWidget()}
+        </Grid>
       </Widget>
     );
   }
