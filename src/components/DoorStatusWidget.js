@@ -11,7 +11,7 @@ import addNotification from 'react-push-notification';
 
 export default class DoorStatusWidget extends Component {
   constructor(props) {
-    super();
+    super(props);
     
     this.state = {
       doorstatus: undefined,
@@ -21,7 +21,7 @@ export default class DoorStatusWidget extends Component {
 
     this.getData = this.getData.bind(this);
     
-    this.eventSource = new EventSource("https://192.168.1.104:5001/stream");
+    this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
   }
 
   componentDidMount() {
@@ -75,7 +75,7 @@ export default class DoorStatusWidget extends Component {
   }
 
   getData() {
-    return axios.get(`https://192.168.1.104:5001/lastactivity`)
+    return axios.get(`http://192.168.1.104:5001/lastactivity`)
     .then(res => {
       console.log(res.data)
       this.setState({

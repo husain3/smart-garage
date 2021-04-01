@@ -3,6 +3,7 @@
   padding: 1rem;
   min-height: 265px;
   border-radius: 4px;
+  max-height: 265px;
 }
 
 /* autoprefixer: off */
@@ -38,10 +39,14 @@
 
 .Widget .content {
   padding-top: 1rem;
+  overflow-y: auto;
+
 }
 
 @media(max-width: 600px) {
   .Widget .content {
       padding-top: 1rem;
+      overflow-y: auto;
+
   }
 }
