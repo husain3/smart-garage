@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 export default class DoorOpenerWidget extends Component {
   constructor(props) {
-    super();
+    super(props);
   }
 
   showWidget() {

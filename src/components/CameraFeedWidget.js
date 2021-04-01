@@ -14,7 +14,7 @@ import '../styles/CameraFeedWidget.css';
 
 export default class CameraFeedWidget extends Component {
   constructor(props) {
-    super();
+    super(props);
     
     this.state = {
       imageurl: 'https://192.168.1.104:5001/get_garage_feed'
