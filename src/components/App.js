@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <DoorOpenerWidget/>
       <DoorStatusWidget/>
-      <CameraFeedWidget />
+      {/* <CameraFeedWidget /> */}
     </div>
   );
 }
