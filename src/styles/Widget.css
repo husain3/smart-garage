@@ -1,5 +1,5 @@
 .Widget {
-  background-color: #020202;
+  background-color: #151515;
   padding: 1rem;
   min-height: 265px;
   border-radius: 4px;
@@ -40,13 +40,11 @@
 .Widget .content {
   padding-top: 1rem;
   overflow-y: auto;
-
 }
 
 @media(max-width: 600px) {
   .Widget .content {
       padding-top: 1rem;
       overflow-y: auto;
-
   }
 }

@@ -30,6 +30,11 @@ export default class DoorLogsWidget extends Component {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    console.log("Inside componentDidUpdate")
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -42,7 +47,7 @@ export default class DoorLogsWidget extends Component {
       this.setState({
         doorlogs: res.data
       });
-      this.forceUpdate();
+      // this.forceUpdate();
     })
     .catch(err => console.error(err))
   }
@@ -82,7 +87,7 @@ export default class DoorLogsWidget extends Component {
 
   render() {
     return (
-      <Widget id="BEP" heading="Door Use History">
+      <Widget heading="Door Use History">
         {this.showWidget()}
       </Widget>
     );
