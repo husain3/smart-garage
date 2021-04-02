@@ -27,7 +27,7 @@ export default class GarageClimateWidget extends Component {
 
     this.interval = setInterval(
       () => this.getData(),
-      300000
+      30000
     );
   }
 
@@ -92,7 +92,7 @@ export default class GarageClimateWidget extends Component {
             alignItems="center"
             justify="center"
           >
-            Relative Humidity
+            Humidity
             <div>
               <h1>
                 {this.state.humidity}%

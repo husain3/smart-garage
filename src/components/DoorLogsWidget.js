@@ -19,6 +19,8 @@ export default class DoorLogsWidget extends Component {
     }
 
     this.getData = this.getData.bind(this);
+
+    this.showWidget = this.showWidget.bind(this);
   }
 
   componentDidMount() {
@@ -30,12 +32,22 @@ export default class DoorLogsWidget extends Component {
     );
   }
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   // Typical usage (don't forget to compare props):
+  //   console.log("Inside componentDidUpdate")
+  //   this.showWidget()
+  // }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
   getData() {
-    console.log("Inside getData()")
+    console.log("Inside Door Logs getData()")
     return axios.get(`http://192.168.1.104:5001/history`)
     .then(res => {
       console.log(res)
@@ -65,6 +77,7 @@ export default class DoorLogsWidget extends Component {
       return (
         <div className="content">
           <Grid
+            className="doorlogview"
             container
             spacing={0}
             direction="column"
@@ -82,7 +95,7 @@ export default class DoorLogsWidget extends Component {
 
   render() {
     return (
-      <Widget id="BEP" heading="Door Use History">
+      <Widget heading="Door Use History">
         {this.showWidget()}
       </Widget>
     );

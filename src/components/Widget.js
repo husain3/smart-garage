@@ -7,7 +7,7 @@ class Widget extends Component {
   constructor(props) {
     super(props);
     this.spanStyles = {};
-    this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
+    // this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
     if (props.colspan !== 1) {
       this.spanStyles.gridColumn = `span ${props.colspan}`;
     }
@@ -17,9 +17,9 @@ class Widget extends Component {
   }
 
   componentDidMount() {
-    this.eventSource.onmessage = e =>
-      // this.updateFlightState(JSON.parse(e.data));
-      console.log(e)
+    // this.eventSource.onmessage = e =>
+    //   // this.updateFlightState(JSON.parse(e.data));
+    //   console.log(e)
   }
 
   render() {

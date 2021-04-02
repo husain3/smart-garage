@@ -21,19 +21,21 @@ export default class DoorStatusWidget extends Component {
 
     this.getData = this.getData.bind(this);
     
-    this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
+    // this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
   }
 
   componentDidMount() {
     Notification.requestPermission();
 
-    this.eventSource.onmessage = e =>
-      this.garageDoorTriggered(JSON.parse(e.data));
+    // this.eventSource.onmessage = e =>
+    //   this.garageDoorTriggered(JSON.parse(e.data));
 
-    this.getData().then(_ => {
-      this.interval = 
-        setInterval(this.getData, 5000);
-    });
+    this.getData();
+
+    this.interval = setInterval(
+      () => this.getData(),
+      5000
+    );
   }
 
   garageDoorOpened(){
@@ -75,6 +77,7 @@ export default class DoorStatusWidget extends Component {
   }
 
   getData() {
+    console.log("Inside Door Status getData()")
     return axios.get(`http://192.168.1.104:5001/lastactivity`)
     .then(res => {
       console.log(res.data)
@@ -89,9 +92,9 @@ export default class DoorStatusWidget extends Component {
 
   showWidget() {
     // console.log(garageOpen)
-    if(this.state.doorstatus === "opened") {
+    if(this.state.doorstatus === "OPENED") {
       return (<img src={garageOpen} className="App-logo" alt="garageOpen" />);
-    } else if (this.state.doorstatus === "closed") {
+    } else if (this.state.doorstatus === "CLOSED") {
       return (<img src={garageClosed} className="App-logo1" alt="garageClosed" />);
     } else {
       return (<a>Retrieving data...</a>);
