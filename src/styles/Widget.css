@@ -42,6 +42,14 @@
   overflow-y: auto;
 }
 
+.Widget .content {
+  overflow-y: hidden !important;
+}
+
+.Widget .content:hover {
+  overflow-y: auto !important;
+}
+
 @media(max-width: 600px) {
   .Widget .content {
       padding-top: 1rem;
