@@ -39,3 +39,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - SG-28: Add username and password authentication to open garage door
 - Deleted default create-react-app attributes
+
+## [1.0.0] - 2021-04-05
+
+### Added
+
+- Full Garage Door Logs widget
+- Garage climate widget
+- Live stream widget
