@@ -1,32 +1,32 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import openerLogo from '../assets/Garage-Opener-Logo.svg'
 
+import Grid from '@material-ui/core/Grid';
+
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-
-import Grid from '@material-ui/core/Grid';
 
 import '../styles/DoorOpenerButton.css';
+import openerLogo from '../assets/Garage-Opener-Logo.svg'
+
 
 export default function DoorOpenerButton() {
-  const [open, setOpen] = React.useState(false);
+  const [open, isSetOpen] = React.useState(false);
 
   const [username, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleClickOpen = () => {
-    setOpen(true);
+    isSetOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    isSetOpen(false);
   };
 
   function getData(event) {
@@ -35,7 +35,7 @@ export default function DoorOpenerButton() {
 
     return axios({
       method: "post",
-      url: "http://192.168.1.104:5000/openclose",
+      url: "https://192.168.1.104:5000/openclose",
       headers: { "Authorization": "Basic "+ Buffer.from(`${username}:${password}`).toString('base64')},
     })
       .then(function (response) {

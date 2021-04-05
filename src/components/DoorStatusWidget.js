@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+
 import Widget from '../components/Widget';
+
 import garageClosed from '../assets/Closed-Sign.svg';
 import garageOpen from '../assets/Open-Sign.svg';
 
-import Grid from '@material-ui/core/Grid';
-
-import addNotification from 'react-push-notification';
-
-
 export default class DoorStatusWidget extends Component {
   constructor(props) {
-    super();
+    super(props);
     
     this.state = {
       doorstatus: undefined,
@@ -20,51 +19,26 @@ export default class DoorStatusWidget extends Component {
     }
 
     this.getData = this.getData.bind(this);
-    
-    this.eventSource = new EventSource("http://192.168.1.104:5001/stream");
+
+    this.showWidget = this.showWidget.bind(this);
   }
 
   componentDidMount() {
-    Notification.requestPermission();
+    this.getData();
 
-    this.eventSource.onmessage = e =>
-      this.garageDoorTriggered(JSON.parse(e.data));
-
-    this.getData().then(_ => {
-      this.interval = 
-        setInterval(this.getData, 5000);
-    });
+    this.interval = setInterval(
+      () => this.getData(),
+      5000
+    );
   }
 
-  garageDoorOpened(){
-    addNotification({
-        title: 'ALERT: GARAGE DOOR OPENED',
-        message: 'The garage door is now open',
-        theme: 'darkblue',
-        native: true // when using native, your OS will handle theming.
-    });
-  };
-
-  garageDoorClosed(){
-    addNotification({
-        title: 'ALERT: GARAGE DOOR CLOSED',
-        message: 'The garage door is now closed',
-        theme: 'darkblue',
-        native: true // when using native, your OS will handle theming.
-    });
-  };
-
-  garageDoorTriggered(garageState) {
-    if(garageState.door_status === "closed") {
-      this.garageDoorClosed();
-    } else if (garageState.door_status === "opened") {
-      this.garageDoorOpened();
-    }
-    this.getData();
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   getData() {
-    return axios.get(`http://192.168.1.104:5002/lastactivity`)
+    console.log("Inside DoorStatusWidget getData()")
+    return axios.get(`http://192.168.1.104:5001/lastactivity`)
     .then(res => {
       console.log(res.data)
       this.setState({
@@ -72,17 +46,27 @@ export default class DoorStatusWidget extends Component {
         dateopened: res.data["date"],
         timeopened: res.data["time"]
       });
-      this.forceUpdate();
+    })
+    .catch(err => {
+      console.error(err);
+      this.setState({
+        doorstatus: "ERROR",
+        dateopened: undefined,
+        timeopened: undefined
+      });
     });
   }
 
   showWidget() {
-    if(this.state.doorstatus === "opened") {
+    console.log("Inside DoorStatusWidget showWidget()")
+    if(this.state.doorstatus === "OPENED") {
       return (<img src={garageOpen} className="App-logo" alt="garageOpen" />);
-    } else if (this.state.doorstatus === "closed") {
+    } else if (this.state.doorstatus === "CLOSED") {
       return (<img src={garageClosed} className="App-logo1" alt="garageClosed" />);
+    } else if (this.state.doorstatus === "ERROR") {
+      return (<a>Load error.</a>);
     } else {
-      return (<a>dunno</a>);
+      return (<a>Retrieving data...</a>);
     }
   }
 

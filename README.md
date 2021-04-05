@@ -5,8 +5,9 @@ This is the frontend service for [smart-garage-backend](https://github.com/husai
 With this service, you will be able to:
 
 * Open and close the garage door remotely
-* View the live open/close status of the garage door [In Development]
-* View the usage history of garage door (both from app and other sources) [In Development]
+* View the live open/close status of the garage door
+* View the usage history of garage door (both from app and other sources)
+* View the temperature and relative humidity of the garage
 * View a live camera feed of the garage area [In Development]
 
 PLEASE NOTE: Project is implemented using a [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
