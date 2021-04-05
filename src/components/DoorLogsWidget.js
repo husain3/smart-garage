@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Widget from '../components/Widget';
-import garageClosed from '../assets/Closed-Sign.svg';
-import garageOpen from '../assets/Open-Sign.svg';
 
+import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
-import addNotification from 'react-push-notification';
+import Widget from '../components/Widget';
+
 import '../styles/DoorLogsWidget.css';
 
 
@@ -19,7 +17,6 @@ export default class DoorLogsWidget extends Component {
     }
 
     this.getData = this.getData.bind(this);
-
     this.showWidget = this.showWidget.bind(this);
   }
 
@@ -32,35 +29,29 @@ export default class DoorLogsWidget extends Component {
     );
   }
 
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   console.log("Inside componentDidUpdate")
-  //   this.showWidget()
-  // }
-
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
   getData() {
-    console.log("Inside Door Logs getData()")
+    console.log("Inside DoorLogsWidget getData()")
     return axios.get(`http://192.168.1.104:5001/history`)
     .then(res => {
-      console.log(res)
+      console.log(res);
       this.setState({
         doorlogs: res.data
       });
-      this.forceUpdate();
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+      console.error(err);
+      this.setState({
+        doorlogs: "ERROR"
+      });
+    });
   }
 
   showWidget() {
-    // console.log(garageOpen)
+    console.log("Inside DoorLogsWidget showWidget()")
     if (this.state.doorlogs === "") {
       return (
         <Grid
@@ -71,6 +62,18 @@ export default class DoorLogsWidget extends Component {
           justify="center"
         >
           <a>Retrieving data...</a>
+        </Grid>
+      );
+    } else if (this.state.doorlogs === "ERROR") {
+      return (
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+          <a>Load error.</a>
         </Grid>
       );
     } else {

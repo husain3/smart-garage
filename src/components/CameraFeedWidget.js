@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Widget from '../components/Widget';
-import garageClosed from '../assets/Closed-Sign.svg';
-import garageOpen from '../assets/Open-Sign.svg';
 
 import Grid from '@material-ui/core/Grid';
 
-import addNotification from 'react-push-notification';
+import Widget from '../components/Widget';
 
 import '../styles/CameraFeedWidget.css';
 

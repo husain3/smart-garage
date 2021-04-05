@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Widget from '../components/Widget';
-import garageClosed from '../assets/Closed-Sign.svg';
-import garageOpen from '../assets/Open-Sign.svg';
 
+import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 
-import addNotification from 'react-push-notification';
-
+import Widget from '../components/Widget';
 
 export default class GarageClimateWidget extends Component {
   constructor(props) {
@@ -35,13 +31,6 @@ export default class GarageClimateWidget extends Component {
     clearInterval(this.interval);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (this.props.userID !== prevProps.userID) {
-  //     this.fetchData(this.props.userID);
-  //   }
-  // }
-
   getData() {
     return axios.get(`http://192.168.1.104:5001/climate`)
     .then(res => {
@@ -50,7 +39,13 @@ export default class GarageClimateWidget extends Component {
         temp: res.data["temperature"],
         humidity: res.data["humidity"]
       });
-      this.forceUpdate();
+    })
+    .catch(err => {
+      console.error(err);
+      this.setState({
+        temp: "ERROR",
+        humidity: "ERROR"
+      });
     });
   }
 
@@ -68,7 +63,20 @@ export default class GarageClimateWidget extends Component {
           <a>Retrieving data...</a>
         </Grid>
       );
-    } else {
+    } else if (this.state.temp === "ERROR" || this.state.humidity === "ERROR") {
+      return (
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+          <a>Load error.</a>
+        </Grid>
+      );
+    }
+    else {
       return (
         <div className="content">
           <Grid
