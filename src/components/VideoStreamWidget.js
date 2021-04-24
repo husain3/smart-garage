@@ -20,7 +20,7 @@ export default class VideoStreamWidget extends Component {
         alignItems="center"
         justify="center"
         >
-          <img src="http://192.168.1.120:8081?action=stream" width="256" height="144" />
+          <img src="http://192.168.1.97:8091/2/stream" width="256" height="144" />
         </Grid>
       </Widget>
     );
