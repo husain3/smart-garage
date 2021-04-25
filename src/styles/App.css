@@ -1,21 +1,33 @@
 .App {
   display: block;
   min-height: 100vh;
-  padding: 1rem;
+  /* padding: 1rem; */
   -webkit-font-smoothing: antialiased;
+  background-color: #000000
 }
 
 .App > * + * {
   margin-top: 1rem;
 }
 
+/* .container {
+  padding:0;
+  margin:auto;
+} */
+
+.col {
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+
 /* autoprefixer: off */
 @supports(display:grid) {
   .App {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      /* display: grid; */
+      /* grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      grid-gap: 1rem;
+      grid-gap: 1rem; */
   }
 
   .App > * + * {
@@ -25,10 +37,10 @@
 
 @media(max-width: 660px) {
   .App {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    /* display: grid; */
+    /* grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 1rem;
+    grid-gap: 1rem; */
 }
 
   .App > * + * {
