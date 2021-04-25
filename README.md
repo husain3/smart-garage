@@ -12,6 +12,25 @@ With this service, you will be able to:
 
 PLEASE NOTE: Project is implemented using a [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
+## Docker
+
+To run a development server using Docker, run the following:
+
+docker build -t smart-garage:latest .
+docker run \
+    -it \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3000:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    smart-garage:latest
+
+To run the production server:
+
+docker build -f Dockerfile.prod -t smart-garage:prod .
+docker run -it --rm -p 5000:80 smart-garage:prod
+
 ## Available Scripts
 
 Once you clone the repository, in the smart-garage directory, you can run:
