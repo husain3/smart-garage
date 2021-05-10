@@ -18,7 +18,8 @@ To run a development server using Docker, run the following:
 
 ```docker build -t smart-garage:latest .```
 
-```docker run \
+```
+docker run \
     -it \
     --rm \
     -v ${PWD}:/app \
