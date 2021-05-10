@@ -17,6 +17,7 @@ PLEASE NOTE: Project is implemented using a [Gitflow Workflow](https://www.atlas
 To run a development server using Docker, run the following:
 
 docker build -t smart-garage:latest .
+
 docker run \
     -it \
     --rm \
