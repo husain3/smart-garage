@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid';
 
 import Widget from '../components/Widget';
 
+import '../styles/GarageClimateWidget.css';
+
 export default class GarageClimateWidget extends Component {
   constructor(props) {
     super(props);
@@ -78,7 +80,7 @@ export default class GarageClimateWidget extends Component {
     }
     else {
       return (
-        <div className="content">
+        <div className="climateInfo">
           <Grid
             container
             spacing={0}
@@ -86,25 +88,23 @@ export default class GarageClimateWidget extends Component {
             alignItems="center"
             justify="center"
           >
-            Indoor Temperature
-            <div>
-              <h1>
-                {this.state.temp}°C
-              </h1>
+            <div className="p-2">
+              Indoor Temperature
             </div>
-          </Grid>
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            Humidity
-            <div>
-              <h1>
+            {/* <div>&nbsp;</div> */}
+            <div className="p-2">
+              <h2>
+                {this.state.temp}°C
+              </h2>
+            </div>
+            <div className="p-2">
+              Humidity
+            </div>
+            {/* <div>&nbsp;</div> */}
+            <div className="p-2">
+              <h2>
                 {this.state.humidity}%
-              </h1>
+              </h2>
             </div>
           </Grid>
         </div>
