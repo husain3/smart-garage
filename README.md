@@ -16,7 +16,11 @@ PLEASE NOTE: Project is implemented using a [Gitflow Workflow](https://www.atlas
 
 To run a development server using Docker, run the following:
 
+```
 docker build -t smart-garage:latest .
+```
+
+```
 docker run \
     -it \
     --rm \
@@ -25,11 +29,14 @@ docker run \
     -p 3000:3000 \
     -e CHOKIDAR_USEPOLLING=true \
     smart-garage:latest
+```
 
 To run the production server:
 
+```
 docker build -f Dockerfile.prod -t smart-garage:prod .
 docker run -d --restart always -it -p 5000:80 smart-garage:prod
+```
 
 ## Available Scripts
 
