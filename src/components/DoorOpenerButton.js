@@ -35,7 +35,7 @@ export default function DoorOpenerButton() {
 
     return axios({
       method: "post",
-      url: "https://192.168.1.104:5000/openclose",
+      url: "http://192.168.1.104:5000/openclose",
       headers: { "Authorization": "Basic "+ Buffer.from(`${username}:${password}`).toString('base64')},
     })
       .then(function (response) {
