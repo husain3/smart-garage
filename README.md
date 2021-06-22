@@ -37,6 +37,9 @@ To run the production server:
 docker build -f Dockerfile.prod -t smart-garage:prod .
 docker run -d --restart always -it -p 5000:80 smart-garage:prod
 ```
+IMPORTANT NOTE: In order to build and run new changes on production server, follow this:
+
+https://javahowtos.com/guides/124-docker/414-solved-cannot-kill-docker-container-permission-denied.html
 
 ## Available Scripts
 
