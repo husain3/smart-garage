@@ -10,6 +10,7 @@ body {
   font-family: 'Didact Gothic', sans-serif;
   color: #ecf0f1;
   background-color: #000000;
+  tab-size:3;
 }
 
 code {
