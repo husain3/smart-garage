@@ -2,6 +2,7 @@ import DoorOpenerWidget from '../components/DoorOpenerWidget';
 import DoorStatusWidget from '../components/DoorStatusWidget';
 import DoorLogsWidget from '../components/DoorLogsWidget';
 import GarageClimateWidget from '../components/GarageClimateWidget';
+import SettingsWidget from '../components/SettingsWidget';
 import VideoStreamWidget from './VideoStreamWidget';
 
 import Container from 'react-bootstrap/Container'
@@ -32,6 +33,9 @@ function App() {
           </Col>
           <Col>
             <GarageClimateWidget />
+          </Col>
+          <Col>
+            <SettingsWidget />
           </Col>
         </Row>
       </Container>
