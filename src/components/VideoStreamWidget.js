@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
 import '../styles/VideoStreamWidget.css';
+import React, { Component, useEffect, useState } from 'react';
+
 import Grid from '@material-ui/core/Grid';
 
 import Widget from './Widget';
 
 
-export default class VideoStreamWidget extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+function VideoStreamWidget({ videoTitle, videoUrl }) {
+  const [videoUrlState, setVideoUrlState] = useState(videoUrl + Date.now().toString());
 
-  render() {
-    return (
-      <div style={this.spanStyles} className="Widget1">
-        <img src="http://192.168.1.137:8081/4/stream" width="100%" height="auto" object-fit="contain" alt="description of image" />
+  useEffect(() => {
+    setTimeout(() => {
+      setVideoUrlState(videoUrl + Date.now().toString());
+    }, 2500);
+  }, [videoUrlState]);
+
+  return (
+      <div className="Widget1">
+        <img src={videoUrlState}  class="img-fluid" alt="Loading image..." width="100%" height="auto" object-fit="contain"/>
       </div>
-    );
-  }
+  );
 }
+export default VideoStreamWidget;

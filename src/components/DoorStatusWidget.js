@@ -13,9 +13,7 @@ export default class DoorStatusWidget extends Component {
     super(props);
     
     this.state = {
-      doorstatus: undefined,
-      dateopened: undefined,
-      timeopened: undefined
+      doorstatus: undefined
     }
 
     this.getData = this.getData.bind(this);
@@ -38,13 +36,11 @@ export default class DoorStatusWidget extends Component {
 
   getData() {
     console.log("Inside DoorStatusWidget getData()")
-    return axios.get(`http://192.168.1.104:5001/lastactivity`)
+    return axios.get(`http://192.168.1.43:8000/j`)
     .then(res => {
       console.log(res.data)
       this.setState({
-        doorstatus: res.data["door_status"],
-        dateopened: res.data["date"],
-        timeopened: res.data["time"]
+        doorstatus: res.data["door_sensor"]["lowerSensorStatus"]
       });
     })
     .catch(err => {
@@ -59,9 +55,10 @@ export default class DoorStatusWidget extends Component {
 
   showWidget() {
     console.log("Inside DoorStatusWidget showWidget()")
-    if(this.state.doorstatus === "OPENED") {
+    console.log(this.state);
+    if(this.state.doorstatus === "LOW") {
       return (<img src={garageOpen} className="App-logo" alt="garageOpen" />);
-    } else if (this.state.doorstatus === "CLOSED") {
+    } else if (this.state.doorstatus === "HIGH") {
       return (<img src={garageClosed} className="App-logo1" alt="garageClosed" />);
     } else if (this.state.doorstatus === "ERROR") {
       return (<a>Load error.</a>);

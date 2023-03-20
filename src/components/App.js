@@ -25,13 +25,7 @@ function App() {
             <DoorStatusWidget />
           </Col>
           <Col>
-            <VideoStreamWidget />
-          </Col>
-          <Col>
-            <DoorLogsWidget />
-          </Col>
-          <Col>
-            <GarageClimateWidget />
+            <VideoStreamWidget videoUrl="http://192.168.1.5/cgi-bin/jpeg.cgi?channel=1&load=" />
           </Col>
         </Row>
       </Container>
